@@ -1,8 +1,30 @@
+## Configure Terraform to set the required AzureRM provider, version and features{} block.
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.18.0"
+    }
+  }
+
+  cloud {
+    organization = "safaie"
+
+    workspaces {
+      name = "learn-terraform-microsoft-caf-enterprise-scale"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "~> 1.0.0"
+  version = "~> 2.4.1"
 
   providers = {
     azurerm              = azurerm
